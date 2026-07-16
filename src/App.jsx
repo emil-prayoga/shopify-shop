@@ -1,10 +1,19 @@
+import { Routes, Route } from "react-router-dom";
+
 import './App.css'
-import './components/DummyJson'
-import DummyJson from './components/DummyJson'
+import DummyJson from './pages/DummyJson'
+import ProductDetail from './pages/ProductDetail'
 function App() {
   return (
     <>
-      <DummyJson/>
+      <Routes>
+            <Route path="/" element={<DummyJson />} />
+            <Route
+                path="/product/:id"
+                element={<ProductDetail />}
+            />
+        </Routes>
+        
     </>
   )
 }

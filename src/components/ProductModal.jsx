@@ -1,79 +1,8 @@
-import { useState, useEffect } from "react";
-import { FaInfoCircle, FaTimes, FaShoppingCart, FaStar } from "react-icons/fa";
-function DummyJson() {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
-    const [showModal, setShowModal] = useState(null);
-    const [isClosing, setIsClosing] = useState(false);
-    useEffect(()=>{
-        async function getProducts() {
-            try {
-                const response = await fetch("https://dummyjson.com/products")
-                if(!response.ok){
-                    throw new Error("Respon jaringan tidak baik")
-                }
-                const dataProducts = await response.json();
-                    setProducts(dataProducts.products);
-                    setLoading(false);
-            } catch(error) {
-                setError(error.message);
-                setLoading(false);
-            }
-        }
-        getProducts();    
-    }, []);
+import { FaTimes, FaShoppingCart, FaStar } from "react-icons/fa";
 
-    useEffect(() => {
-        if (showModal) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "auto";
-        }
-    }, [showModal]);
-
-    const handleClose = () => {
-        setIsClosing(true); 
-        setTimeout(() => {
-            setShowModal(null);
-            setIsClosing(false); 
-        }, 1200); 
-    };
-
-    if (loading) {
-        return <p className="p-4">Loading...</p>;
-    }
-
-    if(error) {
-        return <p className="p-4 text-red-500">Error: {error}</p> ;           
-    }
-
-    return(
-        <>   
-        <header className="bg-orange-600 text-white font-bold flex items-center justify-center fixed top-0 left-0 w-full p-4 z-10">
-            <h2 className="text-2xl">Shopify Shop</h2>
-        </header>
-        
-        <div className="pt-20 grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-4 bg-gray-100  text-gray-900 md:hover:-translate-y-2 md:hover:shadow-xl   ">
-            {products.map((product) => (
-                <div key={product.id} className="p-4 space-y-2 rounded-md shadow-sm hover:shadow-lg hover:-translate-y-2  active:-translate-y-2 active:shadow-lg  transition-all duration-200 ease-out ">
-                    <img 
-                        src={product.thumbnail} 
-                        alt={product.title} 
-                        className="w-full h-56 object-contain object-center hover:scale-105 transition-transform duration-300"
-                        loading="lazy "
-                    />
-                    <h3 className="text-2xl font-bold">{product.title}</h3>
-                    <p className="text-md text-gray-600 font-medium line-clamp-2 overflow-hidden">{product.description}</p>
-                    <p className="font-bold text-xl text-orange-600">${product.price}</p>
-                    <button onClick={()=>setShowModal(product)} className="flex flex-row gap-2 items-center justify-center w-full mt-4 bg-orange-600 hover:bg-orange-700 transition text-white font-semibold py-3 rounded-xl">
-                        <FaInfoCircle/> View Product Details
-                    </button>
-                </div>
-                
-            ))}
-        </div>
-        
+function ProductModal({ showModal, isClosing, handleClose }) {
+    return  (
+        <>
         {showModal && (
             <div className="fixed inset-0 backdrop-blur-sm bg-black/40 flex justify-center items-center z-50 p-4">
                 <div className={
@@ -161,7 +90,7 @@ function DummyJson() {
                         <div className="flex justify-between">
                             <span className="text-gray-500">Rating</span>
                             <span className="font-semibold flex flex-row gap-2 items-center justify-center">
-                               <div className="text-yellow-500"> <FaStar/> </div> {showModal.rating}
+                            <div className="text-yellow-500"> <FaStar/> </div> {showModal.rating}
                             </span>
                         </div>
 
@@ -174,9 +103,12 @@ function DummyJson() {
                     </button>
                 </div>
             </div>
-         </div> 
+        </div>
+        
         )}
-        </>
+    </>
+        
     )
 }
-export default DummyJson
+
+export default ProductModal
