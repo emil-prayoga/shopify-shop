@@ -28,7 +28,7 @@ function ProductCard({ product }) {
 
             <Link
                 to={`/product/${product.id}`}
-                className="flex gap-2 items-center justify-center w-full mt-4 bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-xl"
+                className="flex gap-2 font-bold items-center justify-center w-full mt-4 bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-xl"
             >
                 <FaInfoCircle />
                 View Product Details

@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaShoppingCart, FaStar, FaChevronLeft } from "react-icons/fa";
-function ProductDetail() {
+function ProductDetail({addToCard}) {
+    const navigate = useNavigate();
     const [product, setProduct] = useState(null);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
@@ -47,7 +49,7 @@ if (error) {
     return (
         
     <div>
-    <div className="bg-orange-600 text-white py-8 px-6 fixed top-0 left-0 w-full z-50">
+    <div className="bg-orange-600 text-white p-4 fixed top-0 left-0 w-full z-50">
        <div className="flex items-center justify-between">
     <Link to="/">
         <FaChevronLeft size={20} />
@@ -58,7 +60,7 @@ if (error) {
     <div className="w-5"></div>
 </div>
     </div>
-        <main className="pt-24">
+        <main className="pt-16">
         <img
             src={product.thumbnail}
             alt={product.title}
@@ -140,6 +142,10 @@ if (error) {
             </div>
 
             <button
+                onClick={() => {
+                    addToCard(product);
+                    navigate("/cart"); 
+                }}
                 className="flex flex-row gap-2 items-center justify-center w-full mt-8 bg-orange-600 hover:bg-orange-700 transition text-white font-semibold py-3 rounded-xl"
             >
                 <FaShoppingCart/> Buy Now
