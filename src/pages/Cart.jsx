@@ -4,7 +4,7 @@ import {
     FaPlus,
     FaChevronLeft
 } from "react-icons/fa";
-function Cart({ cart }) {
+function Cart({ cart,onUpdateQuantity }) {
     const totalHarga = cart.reduce((total,item)=> total + (item.price * item.quantity), 0);
     return(
         <>
@@ -96,7 +96,7 @@ function Cart({ cart }) {
         <div className="flex items-center border rounded-xl overflow-hidden">
 
             <button
-                className="w-11 h-11 hover:bg-gray-100 flex justify-center items-center transition"
+               onClick={() =>onUpdateQuantity(item.id, item.quantity -1)} className="w-11 h-11 hover:bg-gray-100 flex justify-center items-center transition"
             >
                 <FaMinus />
             </button>
@@ -106,7 +106,7 @@ function Cart({ cart }) {
             </span>
 
             <button
-                className="w-11 h-11 hover:bg-orange-50 text-orange-600 flex justify-center items-center transition"
+                onClick={() =>onUpdateQuantity(item.id, item.quantity +1)} className="w-11 h-11 hover:bg-orange-50 text-orange-600 flex justify-center items-center transition"
             >
                 <FaPlus />
             </button>

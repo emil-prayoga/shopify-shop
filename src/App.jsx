@@ -27,12 +27,28 @@ function App() {
   // Hapus baris "addToCard()" yang tadi ada di sini!
   console.log("Isi keranjang saat ini:", cart);
 
+  function onUpdateQuantity(productId, quantityNew) {
+   
+    if (quantityNew < 1) {
+     setCart(cart.filter((item) => item.id != productId));
+     } else {     
+    const updatedCart = cart.map((item) => {
+      if (item.id == productId) {
+        return {...item, quantity: quantityNew}
+      } else {
+        return item;
+      }
+    });
+    setCart(updatedCart);
+  }
+  }
+
   return (
     <>
       <Routes>
         <Route path="/" element={<DummyJson />} />
         <Route path="/product/:id" element={<ProductDetail addToCard={addToCard} />} />
-        <Route path="/cart" element={<Cart cart={cart} />} />
+        <Route path="/cart" element={<Cart cart={cart} onUpdateQuantity={onUpdateQuantity}/>} />
       </Routes>
     </>
   );
