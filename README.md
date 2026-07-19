@@ -5,6 +5,7 @@ A simple e-commerce product catalog built with **React**, **Vite**, **Tailwind C
 ## ✨ Features
 
 * 📦 Fetch product data from DummyJSON API
+* 🛣️ Multi-Page Routing using React Router (Home & Product Detail Page)
 * ⏳ Loading state while fetching data
 * ❌ Error handling for failed requests
 * 🖼️ Responsive product grid layout
@@ -12,15 +13,15 @@ A simple e-commerce product catalog built with **React**, **Vite**, **Tailwind C
 * 🏷️ Category & Brand badges
 * ⭐ Product rating display
 * 💰 Price & discount information
-* 🛒 Buy Now button (UI only)
+* 🛒 Buy Now button
 * 📱 Responsive design
 * 🎨 Smooth hover animations
-* 🚫 Background scroll lock when modal is open
 * ⚡ Built with Vite for fast development
 
 ## 🛠️ Tech Stack
 
 * React
+* React Router DOM
 * Vite
 * Tailwind CSS
 * React Icons
@@ -84,6 +85,7 @@ During this project I learned about:
 * Async/Await
 * Error Handling
 * Loading State
+* React Router
 * Conditional Rendering
 * Rendering Lists with `map()`
 * Modal Implementation
@@ -93,8 +95,6 @@ During this project I learned about:
 
 ## 🔮 Future Improvements
 
-* React Router
-* Product Detail Page
 * Product Search
 * Category Filter
 * Pagination
