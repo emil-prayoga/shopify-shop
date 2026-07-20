@@ -9,7 +9,7 @@ A simple e-commerce product catalog built with **React**, **Vite**, **Tailwind C
 * ⏳ Loading state while fetching data
 * ❌ Error handling for failed requests
 * 🖼️ Responsive product grid layout
-* 🔍 Product detail modal
+* 🔍 Product detail page
 * 🏷️ Category & Brand badges
 * ⭐ Product rating display
 * 💰 Price & discount information
@@ -94,7 +94,6 @@ During this project I learned about:
 * Category Filter
 * Pagination
 * Wishlist
-* Shopping Cart
 * Dark Mode
 * API Search
 * Better UI/UX
